@@ -1,14 +1,15 @@
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Students {
-    ArrayList<Student> studentList;
+    Map<String, Student> studentList;
 
     Students() {
-        this.studentList = new ArrayList<Student>();
+        this.studentList = new HashMap<>();
     }
 
     public void addStudent(Student newStudent) {
-        this.studentList.add(newStudent);
+        this.studentList.put(newStudent.getId(), newStudent);
     }
 
     public void printStudents() {
@@ -20,11 +21,15 @@ public class Students {
         System.out.println("--- All Students ---");
         int currCount = 1;
 
-        for (Student student : this.studentList) {
+        for (Student student : this.studentList.values()) {
             System.out.println(currCount + ". " + student.getName());
             currCount++;
         }
 
         System.out.println();
+    }
+
+    public Student getStudent(String studentId) {
+        return this.studentList.getOrDefault(studentId, null);
     }
 }

@@ -1,15 +1,17 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Courses {
-    List<Course> courseList;
+    Map<String,Course> courseList;
 
     Courses() {
-        this.courseList = new ArrayList<Course>();
+        this.courseList = new HashMap<>();
     }
 
     public void addCourse(Course course) {
-       this.courseList.add(course);
+       this.courseList.put(course.getId(), course);
     }
 
     public void printCourses() {
@@ -22,7 +24,7 @@ public class Courses {
 
         int count = 1;
 
-        for (Course course : getCourseList()) {
+        for (Course course : getCourseList().values()) {
             System.out.println(count + ". " + course.getName() + " (ID: " + course.getId() + ")");
             count++;
         }
@@ -30,7 +32,11 @@ public class Courses {
         System.out.println();
     }
 
-    public List<Course> getCourseList() {
+    public Course getCourse(String courseId) {
+        return getCourseList().getOrDefault(courseId, null);
+    }
+
+    public Map<String,Course> getCourseList() {
         return this.courseList;
     }
 }
