@@ -27,6 +27,7 @@ bin/
 
 ### Jetbrains ###
 .idea/
+student-enrollment-cli.iml
 
 ### Mac OS ###
 .DS_Store
