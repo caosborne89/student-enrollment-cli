@@ -1,8 +1,8 @@
-public class Student {
+public class Course {
     String name;
     String id;
 
-    Student(String name, String id) {
+    Course(String name, String id) {
         this.name = name;
         this.id = id;
     }

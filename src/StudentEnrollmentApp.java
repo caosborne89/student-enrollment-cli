@@ -6,6 +6,7 @@ public class StudentEnrollmentApp {
                 "Type 'help' to see available commands.");
 
         Students students = new Students();
+        Courses courses = new Courses();
 
         while(true) {
             Scanner scan = new Scanner(System.in);
@@ -18,6 +19,12 @@ public class StudentEnrollmentApp {
                     break;
                 case "list_students":
                     students.printStudents();
+                    break;
+                case "add_course":
+                    addCourse(courses);
+                    break;
+                case "list_courses":
+                    courses.printCourses();
                     break;
                 case "exit":
                     return;
@@ -40,7 +47,24 @@ public class StudentEnrollmentApp {
         students.addStudent(newStudent);
 
         System.out.println();
-        System.out.println("Student added: " + newStudent.getName() + " (" + newStudent.getId() + ")");
+        System.out.println("Student added: " + newStudent.getName() + " (ID: " + newStudent.getId() + ")");
+        System.out.println();
+    }
+
+    public static void addCourse(Courses courses) {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Enter course name: ");
+        String name = scan.nextLine();
+
+        System.out.print("Enter course ID: ");
+        String id = scan.nextLine();
+
+        Course course = new Course(name, id);
+        courses.addCourse(course);
+
+        System.out.println();
+        System.out.println("Course added: " + course.getName() + " (ID: " + course.getId() + ")");
         System.out.println();
     }
 }

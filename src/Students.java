@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Students {
-    private ArrayList<Student> studentList;
+    ArrayList<Student> studentList;
 
     Students() {
         this.studentList = new ArrayList<Student>();
