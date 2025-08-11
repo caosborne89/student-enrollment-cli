@@ -22,4 +22,8 @@ public class Student {
     public void addCourse(Course course) {
         this.courses.add(course);
     }
+
+    public List<Course> getCourses() {
+        return this.courses;
+    }
 }

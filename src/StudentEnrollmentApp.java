@@ -29,6 +29,8 @@ public class StudentEnrollmentApp {
                 case "enroll":
                     enrollStudent(students, courses);
                     break;
+                case "drop":
+                    dropStudent(students, courses);
                 case "exit":
                     return;
                 default:
@@ -98,5 +100,31 @@ public class StudentEnrollmentApp {
 
         System.out.println();
         System.out.println("Enrollment successful: " + student.getName() + " enrolled in " + course.getName());
+    }
+
+    public static void dropStudent(Students students, Courses courses) {
+        Scanner scan = new Scanner (System.in);
+
+        System.out.println("Enter student Id: ");
+        String studentId = scan.nextLine();
+
+        Student student = students.getStudent(studentId);
+        if( student == null) {
+            System.out.println("No students with id " + studentId);
+            return;
+        }
+
+        System.out.println("Enter a course Id: ");
+        String courseId = scan.nextLine();
+
+        Course course = courses.getCourse(courseId);
+        if (course == null) {
+            System.out.println("No course found with course id " + courseId);
+        }
+
+        if (!course.getStudents().remove(student) || !student.getCourses().remove(course)) {
+            System.out.println("Could not find a student enrolled in this class");
+        }
+
     }
 }

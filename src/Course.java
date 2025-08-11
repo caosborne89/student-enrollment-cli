@@ -23,4 +23,8 @@ public class Course {
     public void addStudent(Student student) {
         this.students.add(student);
     }
+
+    public List<Student> getStudents() {
+        return this.students;
+    }
 }
