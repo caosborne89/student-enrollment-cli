@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class StudentEnrollmentApp {
@@ -31,6 +32,13 @@ public class StudentEnrollmentApp {
                     break;
                 case "drop":
                     dropStudent(students, courses);
+                    break;
+                case "list_enrollments":
+                    listEnrollments(courses);
+                    break;
+                case "student_courses":
+                    listStudentsCourses(students);
+                    break;
                 case "exit":
                     return;
                 default:
@@ -125,6 +133,56 @@ public class StudentEnrollmentApp {
         if (!course.getStudents().remove(student) || !student.getCourses().remove(course)) {
             System.out.println("Could not find a student enrolled in this class");
         }
+    }
 
+    public static void listEnrollments(Courses courses) {
+        Scanner scan = new Scanner (System.in);
+
+        System.out.print("Enter a course Id: ");
+        String courseId = scan.nextLine();
+
+        Course course = courses.getCourse(courseId);
+        if (course == null) {
+            System.out.println("No course found with course id " + courseId);
+            return;
+        }
+
+        System.out.println("--- Students in" +  course.getName() + " ---");
+
+        int courseCount = 1;
+
+        List<Student> students = course.getStudents();
+
+        for(Student student : students) {
+           System.out.println(courseCount + ". " + student.getName() + "(ID: " + student.getId() + ")");
+           courseCount++;
+        }
+
+        System.out.println();
+    }
+
+    public static void listStudentsCourses(Students students) {
+
+        Scanner scan = new Scanner (System.in);
+
+        System.out.print("Enter student Id: ");
+        String studentId = scan.nextLine();
+
+        Student student = students.getStudent(studentId);
+        if( student == null) {
+            System.out.println("No students with id " + studentId);
+            return;
+        }
+
+        System.out.println("--- Courses for " + student.getName() + " ---");
+
+        int courseCount = 1;
+
+        List<Course> courses = student.getCourses();
+        for(Course course : courses) {
+            System.out.println(courseCount + ". " + course.getName() + " (ID: " + course.getId() + ")");
+        }
+
+        System.out.println();
     }
 }
